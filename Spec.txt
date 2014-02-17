@@ -1,0 +1,8 @@
+
+- Run metrics calculation
+- Manually calculate metrics calculation
+
+
+- Write transactions to file
+- Load transactions from file
+
