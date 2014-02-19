@@ -1,8 +1,9 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import org.junit.After;
 import org.junit.Before;
@@ -98,9 +99,18 @@ public class WalletTest {
 	public void canPayForWithConversion() {
 		addTenCAD();
 	
-		ConversionStub fromCADtoUSD= new ConversionStub(new BigDecimal(0.8));
+		ConversionStub fromCADtoUSD = new ConversionStub(new BigDecimal(new BigInteger("8"), -1));
 		wallet.setConversion(fromCADtoUSD);
-		assertEquals(false, wallet.canPayForWithConversion(Currency.USD, 10));
+		assertEquals(true, wallet.canPayForWithConversion(Currency.USD, 8));
+	}
+	
+	@Test
+	public void cannotPayForWithConversion() {
+		addTenCAD();
+		
+		ConversionStub fromCADtoUSD = new ConversionStub(new BigDecimal(0.75));
+		wallet.setConversion(fromCADtoUSD);
+		assertEquals(false, wallet.canPayForWithConversion(Currency.USD, 8));
 	}
 	
 	
@@ -108,6 +118,13 @@ public class WalletTest {
 	public void someMoneyCanPayForSameCurrency() {
 		Bill b = new Bill(10, Currency.CAD);
 		wallet.put(b);
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void fillUpWallet() {
+		for(int i = 0; i < 101; i++) {
+			wallet.put(new Bill(5, Currency.CAD));
+		}
 	}
 	
 	
