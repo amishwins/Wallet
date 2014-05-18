@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -125,6 +126,11 @@ public class WalletTest {
 		for(int i = 0; i < 101; i++) {
 			wallet.put(new Bill(5, Currency.CAD));
 		}
+	}
+	
+	@Test
+	public void isJenkinsWorking() {
+		fail("This is to check what happens in Github/Jenkins");
 	}
 	
 	

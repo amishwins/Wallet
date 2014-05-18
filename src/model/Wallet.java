@@ -65,7 +65,7 @@ public class Wallet {
 		for(Entry<Currency, List<Bill>> currBills : billsForCurrency.entrySet()) {
 			for(Bill b: currBills.getValue()) {
 				BigDecimal rate = conversion.getRate(b.getCurrency(), targetCurrency);
-				logger.info("Conversion rate: " + rate);
+				logger.fine("Conversion rate: " + rate);
 				BigDecimal converted = rate.multiply(new BigDecimal(b.getAmount()));
 				total = total.add(converted);
 			}
