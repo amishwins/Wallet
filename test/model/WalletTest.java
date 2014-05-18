@@ -1,7 +1,7 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -130,7 +130,7 @@ public class WalletTest {
 	
 	@Test
 	public void isJenkinsWorking() {
-		fail("This is to check what happens in Github/Jenkins");
+		assertTrue(Integer.parseInt("1") == 1);
 	}
 	
 	
